@@ -4,6 +4,7 @@ volumes:
   pg_data_production:
   static_volume:
   media:
+  redoc:
 
 services:
   db:
@@ -20,14 +21,14 @@ services:
   frontend:
     image: trub1999/foodgram_frontend
     env_file: .env
-    command: cp -r /app/build/. /frontend_static/
     volumes:
-      - static_volume:/frontend_static
+      - static_volume:/app/result_build/
   gateway:
     image: trub1999/foodgram_gateway
     env_file: .env
     volumes:
       - static_volume:/staticfiles
       - media:/app/media/
+      - redoc:/app/docs/
     ports:
       - 8080:80
