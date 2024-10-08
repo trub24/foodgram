@@ -4,7 +4,7 @@ from django.http import FileResponse
 from django.shortcuts import get_object_or_404
 from django.http.response import JsonResponse
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import status, viewsets, filters
+from rest_framework import status, viewsets
 from rest_framework.mixins import (
     ListModelMixin,
     RetrieveModelMixin
@@ -89,7 +89,9 @@ class UserViewSet(djoser_views.UserViewSet):
         paginator = LimitOffsetPagination()
         paginator.page_size = 5
         result_page = paginator.paginate_queryset(following, request)
-        serializer = SubscriptionsSerializer(result_page, many=True, context={'request': request})
+        serializer = SubscriptionsSerializer(
+            result_page, many=True, context={'request': request}
+        )
         return paginator.get_paginated_response(serializer.data)
 
     @action(methods=['post', 'delete'],
@@ -105,7 +107,10 @@ class UserViewSet(djoser_views.UserViewSet):
                 return Response(status=status.HTTP_400_BAD_REQUEST)
             if user == following:
                 return Response(status=status.HTTP_400_BAD_REQUEST)
-            serializer = SubscriptionsSerializer(data=request.data, context={'request': request, 'following': following})
+            serializer = SubscriptionsSerializer(
+                data=request.data,
+                context={'request': request, 'following': following}
+            )
             serializer.is_valid(raise_exception=True)
             serializer.save(user=user, following=following)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -122,7 +127,7 @@ class ListRetrieveViewSet(
     RetrieveModelMixin,
     viewsets.GenericViewSet
 ):
-    permission_classes = [AllowAny,]
+    permission_classes = [AllowAny, ]
     pagination_class = None
 
 
