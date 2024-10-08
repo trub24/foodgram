@@ -21,8 +21,9 @@ services:
   frontend:
     image: trub1999/foodgram_frontend
     env_file: .env
+    command: cp -r /app/build/. /frontend_static/
     volumes:
-      - static_volume:/app/result_build/
+      - static_volume:/frontend_static/
   gateway:
     image: trub1999/foodgram_gateway
     env_file: .env
