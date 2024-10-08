@@ -10,7 +10,6 @@ services:
     image: postgres:13.10
     env_file: .env
     volumes:
-      - ./data/ingredients_new.csv:/var/lib/postgresql/pgdata
       - pg_data_production:/var/lib/postgresql/data
   backend:
     image: trub1999/foodgram_backend
