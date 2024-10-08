@@ -16,7 +16,7 @@ services:
     image: trub1999/foodgram_backend
     env_file: .env
     volumes:
-      - static_volume:/backend_static
+      - static_volume:/backend_static/
       - media:/app/media/
   frontend:
     image: trub1999/foodgram_frontend
@@ -27,7 +27,7 @@ services:
     image: trub1999/foodgram_gateway
     env_file: .env
     volumes:
-      - static_volume:/staticfiles
+      - static_volume:/staticfiles/
       - media:/app/media/
       - redoc:/app/docs/
     ports:
