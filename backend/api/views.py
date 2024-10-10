@@ -5,6 +5,9 @@ from recipe.models import Recipe
 
 
 def redirection(request, surl):
-    id = short_url.decode(surl)
-    recipe = get_object_or_404(Recipe, id=id)
-    return redirect(f'https://foodgram-12.zapto.org/recipes/{recipe.id}')
+    url = 'https://{}/{}/{}'.format(
+        'foodgram-12.zapto.org',
+        'recipes',
+        short_url.decode_url(surl)
+    )
+    return redirect(url)
