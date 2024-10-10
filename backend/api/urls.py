@@ -1,6 +1,5 @@
 from django.urls import include, path
 from rest_framework import routers
-from api import views
 from users.views import UserViewSet
 from recipe.views import TagViewSet, IngredientViewSet, RecipeViewSet
 
