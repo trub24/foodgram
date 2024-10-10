@@ -16,7 +16,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['51.250.29.60', 'foodgram-12.zapto.org', '127.0.0.1', 'localhost']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -128,7 +127,7 @@ DJOSER = {
         'current_user': ['rest_framework.permissions.IsAuthenticated'],
     },
     'SERIALIZERS': {
-        'current_user': 'api.serializers.UserSerializer',
+        'current_user': 'users.serializers.UserSerializer',
     }
 }
 

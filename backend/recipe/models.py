@@ -1,5 +1,9 @@
 from django.db import models
-from users.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
+from django.contrib.auth import get_user_model
+
+
+User = get_user_model()
 
 
 class Tag(models.Model):
@@ -23,6 +27,12 @@ class Ingredient(models.Model):
         default_related_name = 'Ingredient'
         verbose_name = 'ингридиент'
         verbose_name_plural = 'Интгридиенты'
+        constraints = [
+            models.UniqueConstraint(
+                fields=['name', 'measurement_unit'],
+                name='unique_ing'
+            )
+        ]
 
     def __str__(self):
         return self.name
@@ -43,7 +53,14 @@ class Recipe(models.Model):
     name = models.CharField('название', max_length=256,)
     image = models.ImageField('Картинака', upload_to='recipe/images/',)
     text = models.TextField('описание',)
-    cooking_time = models.PositiveIntegerField('время приготовления',)
+    cooking_time = models.SmallIntegerField(
+        'время приготовления',
+        default=1,
+        validators=[
+            MaxValueValidator(5000),
+            MinValueValidator(1)
+        ]
+    )
     pub_date = models.DateTimeField('Дата публикации', auto_now_add=True)
     short_link = models.CharField(
         'Короткая ссылка',
@@ -52,7 +69,7 @@ class Recipe(models.Model):
     )
 
     class Meta:
-        default_related_name = 'recipe'
+        default_related_name = 'recipes'
         verbose_name = 'рецепт'
         verbose_name_plural = 'Рецепты'
         ordering = ('-pub_date', )
@@ -91,7 +108,7 @@ class Follow(models.Model):
         User,
         on_delete=models.CASCADE,
         related_name='follow',
-        verbose_name='Юзер',
+        verbose_name='Пользователь',
     )
     following = models.ForeignKey(
         User,
@@ -114,7 +131,7 @@ class Follow(models.Model):
         return f'{self.user} {self.following}'
 
 
-class IsInShoppingCart(models.Model):
+class ShoppingCart(models.Model):
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
