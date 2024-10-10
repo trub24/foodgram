@@ -17,5 +17,5 @@ urlpatterns = [
     path('', include(router.urls)),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
-    path('(?P<surl>[a-zA-Z0-9_-]+)/', views.redirect, name='redirect')
+    path('(?P<surl>[a-zA-Z0-9_-]+)/', views.redirection, name='redirect')
 ]

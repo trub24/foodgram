@@ -22,7 +22,7 @@ class IngredientResource(resources.ModelResource):
 
 class IngredientAdmin(ImportExportModelAdmin):
     resource_classes = [IngredientResource]
-    search_fields = ['name',]
+    search_fields = ['name', ]
 
 
 admin.site.register(Tag)
