@@ -125,8 +125,8 @@ class RecipeCreateSerializer(СommonRecipeSerializer):
         tags = validated_data.pop('tags')
         recipe = Recipe.objects.create(**validated_data)
         recipe.short_link = 'https://{}/{}'.format(
-            'foodgram-12.zapto.org',
-            short_url.encode_url(recipe.id)
+            'foodgram-12.zapto.org/recipes',
+            recipe.id
         )
         recipe.save()
         recipe.tags.set(tags)
