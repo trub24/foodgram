@@ -1,5 +1,6 @@
 from django.urls import include, path
 from rest_framework import routers
+from api import views
 from users.views import UserViewSet
 from recipe.views import TagViewSet, IngredientViewSet, RecipeViewSet
 
@@ -15,5 +16,6 @@ router.register(r'recipes', RecipeViewSet, basename='recipes')
 urlpatterns = [
     path('', include(router.urls)),
     path('auth/', include('djoser.urls')),
-    path('auth/', include('djoser.urls.authtoken'))
+    path('auth/', include('djoser.urls.authtoken')),
+    path('(?P<surl>[a-zA-Z0-9_-]+)/', views.redirection, name='redirect')
 ]
