@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-)@_=!pf_)0=mnr=cze47hv6u&h8eoh$+-kay530t3w6if+n%ub'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['51.250.29.60', 'foodgram-12.zapto.org', '127.0.0.1', 'localhost']
 
