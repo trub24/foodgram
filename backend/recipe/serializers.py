@@ -1,4 +1,3 @@
-import short_url
 from rest_framework import serializers
 from users.serializers import UserSerializer
 from api.utils import Base64ImageField
