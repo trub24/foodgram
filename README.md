@@ -5,11 +5,7 @@ Foodgram, «Продуктовый помощник». Онлайн-сервис
 Клонировать репозиторий и перейти в него в командной строке:
 
 ```
-https://github.com/trub24/Review_API.git
-```
-
-```
-cd api_yamd
+https://github.com/trub24/foodgram.git
 ```
 
 Cоздать и активировать виртуальное окружение:
@@ -26,6 +22,12 @@ source venv/Scripts/activate
 
 ```
 pip install -r requirements.txt
+```
+
+Переходим в рабочую директорию:
+
+```
+cd foodgram
 ```
 
 Выполнить миграции:
